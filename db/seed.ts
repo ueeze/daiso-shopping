@@ -19,6 +19,14 @@ const main = async () => {
 
     await db.delete(schema.products)
 
+    await db.delete(schema.accounts)
+    await db.delete(schema.users)
+
+    const resUsers = await db
+      .insert(schema.users)
+      .values(sampleData.users)
+      .returning()
+
     const resProducts = await db
       .insert(schema.products)
       .values(sampleData.products)
